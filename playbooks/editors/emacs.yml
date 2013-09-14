@@ -1,5 +1,4 @@
 ---
-
 - hosts: all
   sudo: yes
   tasks:
@@ -8,5 +7,7 @@
     shell: emacs --version | grep 24.3
     ignore_errors: True
 
-  - include: "tasks/emacs.yml"
+  - include: "tasks/install-emacs.yml"
     when: emacs_installed|failed
+
+  - include: "tasks/configure-emacs.yml"

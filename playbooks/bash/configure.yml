@@ -1,0 +1,5 @@
+---
+- hosts: all
+  tasks:
+  - copy: src=files/.bashrc
+          dest=/home/vagrant/.bashrc

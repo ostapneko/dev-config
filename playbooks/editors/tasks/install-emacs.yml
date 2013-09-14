@@ -11,7 +11,7 @@
          creates=/tmp/emacs-24.3
 
 - name: Configure emacs
-  shell: ./configure
+  shell: ./configure --with-xpm=no --with-jpeg=no --with-gif=no --with-tiff=no
          chdir=/tmp/emacs-24.3
 
 - name: Make emacs

@@ -1,0 +1,3 @@
+- name: Copy .emacs
+  copy: src=../files/.emacs
+        dest=/home/vagrant/.emacs
