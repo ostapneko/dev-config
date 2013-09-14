@@ -1,0 +1,24 @@
+- name: install libncurses
+  apt: pkg=libncurses5-dev
+
+- name: Download emacs 24
+  get_url: url=http://ftp.heanet.ie/mirrors/gnu/emacs/emacs-24.3.tar.gz
+           dest=/tmp/emacs-install.tar.gz
+
+- name: Unzip emacs
+  shell: tar xzf /tmp/emacs-install.tar.gz
+         chdir=/tmp
+         creates=/tmp/emacs-24.3
+
+- name: Configure emacs
+  shell: ./configure
+         chdir=/tmp/emacs-24.3
+
+- name: Make emacs
+  shell: make
+         chdir=/tmp/emacs-24.3
+
+- name: Install emacs
+  sudo: yes
+  shell: make install
+         chdir=/tmp/emacs-24.3

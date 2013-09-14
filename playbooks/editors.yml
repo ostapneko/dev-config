@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  sudo: yes
+  tasks:
+  - name: Check Emacs installation
+    register: emacs_installed
+    shell: emacs --version | grep 24.3
+    ignore_errors: True
+
+  - include: "tasks/emacs.yml"
+    when: emacs_installed|failed
