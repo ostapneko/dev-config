@@ -31,3 +31,7 @@
 (custom-set-faces)
 
 (load-theme 'twilight t)
+
+;; Control backup place
+(setq backup-directory-alist `(("." . "~/.emacs-backup")))
+(setq backup-by-copying t)

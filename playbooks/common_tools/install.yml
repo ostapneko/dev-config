@@ -2,7 +2,8 @@
 - hosts: all
   sudo: yes
   tasks:
-    - apt: update_cache=yes pkg=$item state=latest
+    - name: Install a bunch of common tools
+      apt: update_cache=yes pkg=$item state=latest
       with_items:
         - autoconf
         - automake
