@@ -1,3 +1,4 @@
 ---
 - include: "editors/emacs.yml"
 - include: "bash/configure.yml"
+- include: "common_tools/install.yml"

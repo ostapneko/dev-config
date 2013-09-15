@@ -1,0 +1,13 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+    - apt: update_cache=yes pkg=$item state=latest
+      with_items:
+        - autoconf
+        - automake
+        - build-essential
+        - curl
+        - wget
+        - git-core
+        - tree
