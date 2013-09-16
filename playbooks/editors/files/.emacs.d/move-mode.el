@@ -67,7 +67,7 @@
 
 (add-hook 'minibuffer-setup-hook 'disable-move-mode)
 (add-hook 'minibuffer-exit-hook 'enable-move-mode)
-(add-hook 'term-setup-hook 'disable-move-mode)
+(add-hook 'term-mode-hook 'disable-move-mode)
 
 (defun disable-move-mode ()
   "Exit move mode"
