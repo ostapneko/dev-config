@@ -1,3 +1,11 @@
 - name: Copy .emacs
   copy: src=../files/.emacs
         dest=/home/vagrant/.emacs
+
+- name: Copy .emacs.d/package-installation.el
+  copy: src=../files/.emacs.d/package-installation.el
+        dest=/home/vagrant/.emacs.d/package-installation.el
+
+- name: Copy .emacs.d/move-mode.el
+  copy: src=../files/.emacs.d/move-mode.el
+        dest=/home/vagrant/.emacs.d/move-mode.el
