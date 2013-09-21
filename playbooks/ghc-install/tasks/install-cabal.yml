@@ -1,0 +1,22 @@
+- name: Download Cabal-install 1.18
+  get_url: url=http://hackage.haskell.org/packages/archive/cabal-install/1.18.0.1/cabal-install-1.18.0.1.tar.gz
+           dest=/tmp/cabal-install.tar.gz
+
+- name: Unzip Cabal
+  shell: tar xzf /tmp/cabal-install.tar.gz
+         chdir=/tmp
+         creates=/tmp/cabal-install-1.18.0.1
+
+- name: Install cabal
+  shell: ./bootstrap.sh
+         chdir=/tmp/cabal-install-1.18.0.1
+
+- name: Link cabal
+  sudo: yes
+  sudo_user: root
+  file: src=/home/vagrant/.cabal/bin/cabal
+        dest=/usr/local/bin/cabal
+        state=link
+
+- name: Update cabal
+  shell: cabal update

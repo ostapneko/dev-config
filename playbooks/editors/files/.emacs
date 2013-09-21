@@ -5,6 +5,7 @@
 (check-packages '(twilight-theme
 		  jujube-theme
 		  yaml-mode
+		  key-chord
 		  magit
 		  auto-complete))
 
@@ -40,6 +41,3 @@
 (add-hook 'find-file-hook (lambda () (linum-mode 1)))
 ;; Add space between line number and text
 (setq linum-format "%3d ")
-
-;; Haskell
-(load-file "~/.emacs.d/haskell.el")

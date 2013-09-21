@@ -1,4 +1,6 @@
 - name: install libncurses
+  sudo: yes
+  sudo_user: root
   apt: pkg=libncurses5-dev
 
 - name: Download emacs 24
@@ -20,5 +22,6 @@
 
 - name: Install emacs
   sudo: yes
+  sudo_user: root
   shell: make install
          chdir=/tmp/emacs-24.3

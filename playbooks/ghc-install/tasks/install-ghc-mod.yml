@@ -1,0 +1,6 @@
+---
+- name: Install happy
+  shell: cabal install happy
+
+- name: Install ghc-mod
+  shell: cabal install ghc-mod

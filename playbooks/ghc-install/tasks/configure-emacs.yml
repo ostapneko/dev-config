@@ -1,0 +1,7 @@
+---
+- name: Copy haskell.el
+  copy: src=../files/.emacs.d/haskell.el
+        dest=/home/vagrant/.emacs.d/haskell.el
+
+- name: Add to .emacs
+  shell: echo "\n;; Haskell\n(load-file \"~/.emacs.d/haskell.el\")" >> ~/.emacs
