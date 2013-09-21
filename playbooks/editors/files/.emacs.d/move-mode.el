@@ -53,6 +53,7 @@
     ("o" . find-file)
     ("\C-l" . duplicate-current-line)
     ("\M-l" . kill-whole-line)
+    ("\C-t" . show-terminal)
   )
   ;; MAKE mode global rather than buffer local
   :global 1
@@ -78,3 +79,14 @@
   "Enter move mode"
   (interactive)
   (move-mode 1))
+
+(defun show-terminal ()
+  "Show terminal frame above current buffer"
+  (interactive)
+  (split-window-below)
+  (term "/bin/bash")
+  (term-char-mode)
+  (local-set-key (kbd "\C-t") (lambda ()
+				      (interactive)
+				      (delete-window)
+				      (enable-move-mode))))
