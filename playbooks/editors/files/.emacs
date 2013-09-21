@@ -2,7 +2,7 @@
 (load-file "~/.emacs.d/package-installation.el")
 
 ;; Load basic packages
-(check-packages '(twillight-theme
+(check-packages '(twilight-theme
 		  jujube-theme
 		  yaml-mode
 		  magit

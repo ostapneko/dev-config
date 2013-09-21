@@ -4,28 +4,21 @@
       "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
-(defvar prelude-packages
-  '(twilight-theme
-    yaml-mode
-    key-chord
-    auto-complete
-    )
-  "A list of packages to ensure are installed at launch.")
+(defun check-packages (packages)
+  (unless (packages-installed-p packages)
+    ;; check for new packages (package versions)
+    (message "%s" "Emacs is now refreshing its package database...")
+    (package-refresh-contents)
+    (message "%s" " done.")
+    ;; install the missing packages
+    (dolist (p packages)
+      (when (not (package-installed-p p))
+        (package-install p)))))
 
-(defun prelude-packages-installed-p ()
-  (setq packages prelude-packages)
+(defun packages-installed-p (packages)
+  (setq remaining-packages packages)
   (setq flag t)
-  (while packages
-        (when (not (package-installed-p (car packages))) (setq flag nil))
-        (setq packages (cdr packages)))
+  (while remaining-packages
+        (when (not (package-installed-p (car remaining-packages))) (setq flag nil))
+        (setq remaining-packages (cdr remaining-packages)))
   flag)
-
-(unless (prelude-packages-installed-p)
-  ;; check for new packages (package versions)
-  (message "%s" "Emacs Prelude is now refreshing its package database...")
-  (package-refresh-contents)
-  (message "%s" " done.")
-  ;; install the missing packages
-  (dolist (p prelude-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
