@@ -11,8 +11,6 @@
   - include: "tasks/install-ghc.yml"
     when: ghc_installed|failed
 
-
-
 - hosts: development
   sudo: yes
   sudo_user: vagrant
@@ -25,14 +23,6 @@
   - include: "tasks/install-cabal.yml"
     when: cabal_installed|failed
 
-  - name: ghc-mod check
-    shell: find /home/vagrant/.cabal/bin -name 'ghc-mod'
-    ignore_errors: yes
-    register: ghc_mod_installed
-
-  - include: "tasks/install-ghc-mod.yml"
-    when: ghc_mod_installed|failed
-
   - name: check .cabal/bin in path
     shell: "grep -q '.cabal/bin' /home/vagrant/.bashrc"
     ignore_errors: yes
@@ -41,6 +31,14 @@
   - name: put cabal in path
     shell: echo 'export PATH=/home/vagrant/.cabal/bin:$PATH' >> /home/vagrant/.bashrc
     when: cabal_in_path|failed
+
+  - name: ghc-mod check
+    shell: ls /home/vagrant/.cabal/bin/ghc-mod
+    ignore_errors: yes
+    register: ghc_mod_installed
+
+  - include: "tasks/install-ghc-mod.yml"
+    when: ghc_mod_installed|failed
 
   - name: check Emacs config
     shell: "grep -q 'haskell.el' .emacs"
