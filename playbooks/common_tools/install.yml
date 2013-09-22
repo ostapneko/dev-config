@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: development
   sudo: yes
   tasks:
     - name: Install a bunch of common tools

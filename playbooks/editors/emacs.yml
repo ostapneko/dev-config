@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: development
   sudo: yes
   sudo_user: vagrant
   tasks:

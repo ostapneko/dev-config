@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: development
   tasks:
   - name: Copy .bashrc
     copy: src=files/.bashrc
