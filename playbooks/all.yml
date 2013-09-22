@@ -2,4 +2,5 @@
 - include: "common_tools/install.yml"
 - include: "editors/emacs.yml"
 - include: "bash/configure.yml"
-- include: "ghc-install/install.yml"
+- include: "ghc/install.yml"
+- include: "play/install.yml"

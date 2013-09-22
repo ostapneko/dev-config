@@ -1,0 +1,30 @@
+---
+- hosts: development
+  sudo: yes
+  tasks:
+  # Java
+  - include: "tasks/install-jdk.yml"
+
+  # Scala
+  - name: Check scala installation
+    shell: scala -version | grep -q 2.10.2
+    register: scala_installed
+    ignore_errors: yes
+  - include: "tasks/install-scala.yml"
+    when: scala_installed|failed
+
+  # SBT
+  - name: Check SBT installation
+    shell: sbt --version | grep -q 0.13.0
+    register: sbt_installed
+    ignore_errors: yes
+  - include: "tasks/install-sbt.yml"
+    when: sbt_installed|failed
+
+  # Play
+  - name: Check play installation
+    shell: play | grep -q 2.1.4
+    register: play_installed
+    ignore_errors: yes
+  - include: "tasks/install-play.yml"
+    when: play_installed|failed

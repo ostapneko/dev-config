@@ -1,0 +1,26 @@
+---
+- name: Download Scala 2.10.2
+  get_url: url=http://www.scala-lang.org/files/archive/scala-2.10.2.tgz
+           dest=/tmp/scala-install.tgz
+
+- name: Unzip scala
+  shell: tar xzf /tmp/scala-install.tgz
+         chdir=/tmp
+         creates=/tmp/scala-2.10.2
+
+- name: Copy scala
+  shell: cp -R /tmp/scala-2.10.2 /usr/local/share/scala-2.10.2
+         creates=/usr/local/share/scala-2.10.2
+
+- name: Check scala in PATH
+  shell: grep -q '$PATH:$SCALA_HOME/bin' /home/vagrant/.bashrc
+  register: scala_in_path
+  ignore_errors: yes
+
+- name: Add SCALA_HOME
+  shell: echo 'export SCALA_HOME=/usr/local/share/scala-2.10.2' >> /home/vagrant/.bashrc
+  when: scala_in_path|failed
+
+- name: Add Scala to PATH
+  shell: echo 'export PATH=$PATH:$SCALA_HOME/bin' >> /home/vagrant/.bashrc
+  when: scala_in_path|failed
