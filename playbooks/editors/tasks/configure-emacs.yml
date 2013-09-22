@@ -13,7 +13,3 @@
 - name: Copy .emacs.d/move-mode.el
   copy: src=../files/.emacs.d/move-mode.el
         dest=/home/vagrant/.emacs.d/move-mode.el
-
-- name: Copy .emacs.d/haskell.el
-  copy: src=../files/.emacs.d/haskell.el
-        dest=/home/vagrant/.emacs.d/haskell.el
