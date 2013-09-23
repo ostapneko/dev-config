@@ -14,21 +14,21 @@
          chdir=/tmp
          creates=/tmp/play-2.1.4
 
-- name: Create /home/vagrant/bin
-  file: path=/home/vagrant/bin
+- name: Create /home/${dev_user}/bin
+  file: path=/home/${dev_user}/bin
         state=directory
-        owner=vagrant
-        group=vagrant
+        owner=${dev_user}
+        group=${dev_user}
 
 - name: Copy Play
-  shell: export DIR=/home/vagrant/bin/play-2.1.4; cp -R /tmp/play-2.1.4 $DIR && chown -R vagrant:vagrant $DIR
-         creates=/home/vagrant/bin/play-2.1.4
+  shell: export DIR=/home/${dev_user}/bin/play-2.1.4; cp -R /tmp/play-2.1.4 $DIR && chown -R ${dev_user}:${dev_user} $DIR
+         creates=/home/${dev_user}/bin/play-2.1.4
 
 - name: Check Play in PATH
-  shell: grep -q '/home/vagrant/bin/play-2.1.4:$PATH' /home/vagrant/.bashrc
+  shell: grep -q '/home/${dev_user}/bin/play-2.1.4:$PATH' /home/${dev_user}/.bashrc
   register: play_in_path
   ignore_errors: yes
 
 - name: Add Play to PATH
-  shell: echo 'export PATH=/home/vagrant/bin/play-2.1.4:$PATH' >> /home/vagrant/.bashrc
+  shell: echo 'export PATH=/home/${dev_user}/bin/play-2.1.4:$PATH' >> /home/${dev_user}/.bashrc
   when: play_in_path|failed

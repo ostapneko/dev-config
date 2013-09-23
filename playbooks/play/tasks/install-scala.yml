@@ -13,14 +13,14 @@
          creates=/usr/local/share/scala-2.10.2
 
 - name: Check scala in PATH
-  shell: grep -q '$PATH:$SCALA_HOME/bin' /home/vagrant/.bashrc
+  shell: grep -q '$PATH:$SCALA_HOME/bin' /home/${dev_user}/.bashrc
   register: scala_in_path
   ignore_errors: yes
 
 - name: Add SCALA_HOME
-  shell: echo 'export SCALA_HOME=/usr/local/share/scala-2.10.2' >> /home/vagrant/.bashrc
+  shell: echo 'export SCALA_HOME=/usr/local/share/scala-2.10.2' >> /home/${dev_user}/.bashrc
   when: scala_in_path|failed
 
 - name: Add Scala to PATH
-  shell: echo 'export PATH=$PATH:$SCALA_HOME/bin' >> /home/vagrant/.bashrc
+  shell: echo 'export PATH=$PATH:$SCALA_HOME/bin' >> /home/${dev_user}/.bashrc
   when: scala_in_path|failed

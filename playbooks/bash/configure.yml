@@ -3,4 +3,4 @@
   tasks:
   - name: Copy .bashrc
     copy: src=files/.bashrc
-          dest=/home/vagrant/.bashrc
+          dest=/home/${dev_user}/.bashrc

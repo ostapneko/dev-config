@@ -1,15 +1,15 @@
 - name: Copy .emacs
   copy: src=../files/.emacs
-        dest=/home/vagrant/.emacs
+        dest=/home/${dev_user}/.emacs
 
 - name: Create .emacs.d
-  file: path=/home/vagrant/.emacs.d
+  file: path=/home/${dev_user}/.emacs.d
         state=directory
 
 - name: Copy .emacs.d/package-installation.el
   copy: src=../files/.emacs.d/package-installation.el
-        dest=/home/vagrant/.emacs.d/package-installation.el
+        dest=/home/${dev_user}/.emacs.d/package-installation.el
 
 - name: Copy .emacs.d/move-mode.el
   copy: src=../files/.emacs.d/move-mode.el
-        dest=/home/vagrant/.emacs.d/move-mode.el
+        dest=/home/${dev_user}/.emacs.d/move-mode.el

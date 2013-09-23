@@ -14,7 +14,7 @@
 - name: Link cabal
   sudo: yes
   sudo_user: root
-  file: src=/home/vagrant/.cabal/bin/cabal
+  file: src=/home/${dev_user}/.cabal/bin/cabal
         dest=/usr/local/bin/cabal
         state=link
 

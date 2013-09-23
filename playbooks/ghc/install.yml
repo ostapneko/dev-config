@@ -1,7 +1,7 @@
 ---
 - hosts: development
   sudo: yes
-  sudo_user: vagrant
+  sudo_user: ${dev_user}
   tasks:
   - name: check_ghc
     shell: "ghc --version | grep -q 7.6.3"
@@ -13,7 +13,7 @@
 
 - hosts: development
   sudo: yes
-  sudo_user: vagrant
+  sudo_user: ${dev_user}
   tasks:
   - name: cabal check
     shell: "cabal --numeric-version | grep -q 1.18"
@@ -24,16 +24,16 @@
     when: cabal_installed|failed
 
   - name: check .cabal/bin in path
-    shell: "grep -q '.cabal/bin' /home/vagrant/.bashrc"
+    shell: "grep -q '.cabal/bin' /home/${dev_user}/.bashrc"
     ignore_errors: yes
     register: cabal_in_path
 
   - name: put cabal in path
-    shell: echo 'export PATH=/home/vagrant/.cabal/bin:$PATH' >> /home/vagrant/.bashrc
+    shell: echo 'export PATH=/home/${dev_user}/.cabal/bin:$PATH' >> /home/${dev_user}/.bashrc
     when: cabal_in_path|failed
 
   - name: ghc-mod check
-    shell: ls /home/vagrant/.cabal/bin/ghc-mod
+    shell: ls /home/${dev_user}/.cabal/bin/ghc-mod
     ignore_errors: yes
     register: ghc_mod_installed
 
