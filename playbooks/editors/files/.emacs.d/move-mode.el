@@ -54,6 +54,8 @@
     ("\C-l" . duplicate-current-line)
     ("\M-l" . kill-whole-line)
     ("\C-t" . show-terminal)
+    ("\S-s" . little-scroll-up)
+    ("\S-w" . little-scroll-down)
   )
   ;; MAKE mode global rather than buffer local
   :global 1
@@ -90,3 +92,13 @@
 				      (interactive)
 				      (delete-window)
 				      (enable-move-mode))))
+
+(defun little-scroll-up ()
+  (interactive)
+  "scroll 10 characters up"
+  (scroll-up 10))
+
+(defun little-scroll-down ()
+  (interactive)
+  "scroll 10 characters down"
+  (scroll-down 10))

@@ -15,6 +15,9 @@
 
 (load-theme 'jujube t)
 
+;; Point moved when scroll
+(setq scroll-preserve-screen-position 1)
+
 ;; Move mode
 (load-file "~/.emacs.d/move-mode.el")
 
