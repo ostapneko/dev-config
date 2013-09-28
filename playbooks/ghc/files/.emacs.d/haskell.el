@@ -12,6 +12,8 @@
   (ghc-init)
   (add-hook 'after-save-hook 'flymake-start-syntax-check)
   (define-key move-mode-map (kbd "?") 'ghc-flymake-display-errors)
+  (define-key move-mode-map (kbd ">") 'flymake-goto-next-error)
+  (define-key move-mode-map (kbd "<") 'flymake-goto-prev-error)
   (linum-mode))
 
 (add-hook 'haskell-mode-hook 'my-haskell-config)
