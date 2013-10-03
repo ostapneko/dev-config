@@ -1,0 +1,6 @@
+---
+- name: Install Vim
+  sudo_user: root
+  apt: update_cache=yes
+       pkg=vim
+       state=latest
