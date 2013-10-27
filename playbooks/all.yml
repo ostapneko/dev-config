@@ -4,3 +4,4 @@
 - include: "bash/configure.yml"
 - include: "ghc/install.yml"
 - include: "play/install.yml"
+- include: "ruby/configure.yml"

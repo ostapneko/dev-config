@@ -1,6 +1,11 @@
 ---
 - hosts: development
+  sudo: yes
+  sudo_user: ${dev_user}
   tasks:
   - name: Copy .bashrc
     copy: src=files/.bashrc
           dest=/home/${dev_user}/.bashrc
+  - name: Create .bash.d directory
+    file: path=/home/${dev_user}/.bash.d
+          state=directory
