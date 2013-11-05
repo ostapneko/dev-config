@@ -1,0 +1,2 @@
+[development]
+127.0.0.1 ansible_ssh_user=thomas ansible_connection=local

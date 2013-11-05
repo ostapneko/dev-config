@@ -1,6 +1,9 @@
 ---
 - name: Install happy
+  sudo_user: ${dev_user}
   shell: cabal install happy
 
 - name: Install ghc-mod
+  sudo_user: ${dev_user}
   shell: cabal install ghc-mod
+         chdir=/home/${dev_user}
