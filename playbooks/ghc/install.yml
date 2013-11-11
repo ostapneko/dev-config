@@ -11,10 +11,6 @@
   - include: "tasks/install-ghc.yml"
     when: ghc_installed|failed
 
-- hosts: development
-  sudo: yes
-  sudo_user: ${dev_user}
-  tasks:
   - name: cabal check
     shell: "cabal --numeric-version | grep -q 1.18"
     ignore_errors: yes
@@ -23,27 +19,6 @@
   - include: "tasks/install-cabal.yml"
     when: cabal_installed|failed
 
-  - name: check .cabal/bin in path
-    shell: "grep -q '.cabal/bin' /home/${dev_user}/.bashrc"
-    ignore_errors: yes
-    register: cabal_in_path
-
   - name: put cabal in path
-    shell: echo 'export PATH=/home/${dev_user}/.cabal/bin:$PATH' >> /home/${dev_user}/.bashrc
-    when: cabal_in_path|failed
-
-  - name: ghc-mod check
-    shell: ls /home/${dev_user}/.cabal/bin/ghc-mod
-    ignore_errors: yes
-    register: ghc_mod_installed
-
-  - include: "tasks/install-ghc-mod.yml"
-    when: ghc_mod_installed|failed
-
-  - name: check Emacs config
-    shell: "grep -q 'haskell.el' .emacs"
-    ignore_errors: yes
-    register: emacs_configured
-
-  - include: "tasks/configure-emacs.yml"
-    when: emacs_configured|failed
+    template: src=files/.bash.d/cabal.sh.j2
+              dest=/home/${dev_user}/.bash.d/cabal.sh
