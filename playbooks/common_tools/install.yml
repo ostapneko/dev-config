@@ -12,3 +12,4 @@
         - wget
         - git-core
         - tree
+        - unzip
