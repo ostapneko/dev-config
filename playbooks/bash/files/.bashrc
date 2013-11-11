@@ -43,4 +43,7 @@ fi
 
 export TERM=xterm-256color
 
-source ~/.bash.d/*
+ls ~/.bash.d/* &> /dev/null && source ~/.bash.d/*
+
+stty werase undef
+bind '"\C-w":unix-filename-rubout'
