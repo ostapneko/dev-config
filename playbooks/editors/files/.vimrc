@@ -11,7 +11,7 @@ nnoremap  <TAB> :
 set et sts=2 sw=2
 map <leader>t :CommandT<cr>
 set guifont=Ubuntu\ Mono\ 14
-colo molokai
+colo FreshCut
 set isk+=-
 set listchars=trail:~,tab:>-
 set list

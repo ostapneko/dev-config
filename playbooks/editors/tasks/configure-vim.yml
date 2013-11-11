@@ -11,6 +11,10 @@
   copy: src=../files/colors/molokai.vim
         dest=/home/${dev_user}/.vim/colors/molokai.vim
 
+- name: Copy FreshCut
+  copy: src=../files/colors/FreshCut.vim
+        dest=/home/${dev_user}/.vim/colors/FreshCut.vim
+
 - name: Create vim bundle dir
   file: path=/home/${dev_user}/.vim/bundle
         state=directory
@@ -23,7 +27,8 @@
         dest=/home/${dev_user}/.vim/bundle/${item.name}
         depth=1
   with_items:
-    - { name: 'tabular'     , address: 'https://github.com/godlygeek/tabular.git' }
-    - { name: 'vim-fugitive', address: 'https://github.com/tpope/vim-fugitive.git' }
-    - { name: 'ctrlp'       , address: 'https://github.com/kien/ctrlp.vim.git' }
-    - { name: 'vim-markdown', address: 'https://github.com/plasticboy/vim-markdown.git' }
+    - { name: 'tabular'          , address: 'https://github.com/godlygeek/tabular.git' }
+    - { name: 'vim-fugitive'     , address: 'https://github.com/tpope/vim-fugitive.git' }
+    - { name: 'ctrlp'            , address: 'https://github.com/kien/ctrlp.vim.git' }
+    - { name: 'vim-markdown'     , address: 'https://github.com/plasticboy/vim-markdown.git' }
+    - { name: 'vim-coffee-script', address: 'https://github.com/kchmck/vim-coffee-script.git' }
