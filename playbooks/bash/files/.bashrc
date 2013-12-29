@@ -41,7 +41,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-export TERM=xterm-256color
+export TERM=screen-256color
 
 ls ~/.bash.d/* &> /dev/null && source ~/.bash.d/*
 
