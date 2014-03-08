@@ -1,34 +1,31 @@
 ---
 - name: Copy .vimrc
   copy: src=../files/.vimrc
-        dest=/home/${dev_user}/.vimrc
+        dest=/home/{{dev_user}}/.vimrc
 
 - name: Create the colors dir
-  file: path=/home/${dev_user}/.vim/colors
+  file: path=/home/{{dev_user}}/.vim/colors
         state=directory
 
 - name: Copy molokai
   copy: src=../files/colors/molokai.vim
-        dest=/home/${dev_user}/.vim/colors/molokai.vim
+        dest=/home/{{dev_user}}/.vim/colors/molokai.vim
 
 - name: Copy FreshCut
   copy: src=../files/colors/FreshCut.vim
-        dest=/home/${dev_user}/.vim/colors/FreshCut.vim
+        dest=/home/{{dev_user}}/.vim/colors/FreshCut.vim
 
 - name: Create vim bundle dir
-  file: path=/home/${dev_user}/.vim/bundle
+  file: path=/home/{{dev_user}}/.vim/bundle
         state=directory
 
 - name: Blindly execute pathogen install script
   shell: test -d ~/.vim/autoload/pathogen.vim || mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
 - name: Install plugins
-  git:  repo=${item.address}
-        dest=/home/${dev_user}/.vim/bundle/${item.name}
+  git:  repo={{ item.address }}
+        dest=/home/{{dev_user}}/.vim/bundle/{{item.name}}
         depth=1
   with_items:
     - { name: 'tabular'          , address: 'https://github.com/godlygeek/tabular.git' }
     - { name: 'vim-fugitive'     , address: 'https://github.com/tpope/vim-fugitive.git' }
-    - { name: 'ctrlp'            , address: 'https://github.com/kien/ctrlp.vim.git' }
-    - { name: 'vim-markdown'     , address: 'https://github.com/plasticboy/vim-markdown.git' }
-    - { name: 'vim-coffee-script', address: 'https://github.com/kchmck/vim-coffee-script.git' }

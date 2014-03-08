@@ -1,8 +1,8 @@
 ---
 - hosts: development
   sudo: yes
-  sudo_user: ${dev_user}
+  sudo_user: {{ dev_user }}
   tasks:
     - name: Add Ruby env variables
       template: src=files/rbenv_env.j2
-                dest=/home/${dev_user}/.bash.d/rbenv_env
+                dest=/home/{{ dev_user }}/.bash.d/rbenv_env
