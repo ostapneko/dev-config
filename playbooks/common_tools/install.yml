@@ -14,3 +14,7 @@
         - tree
         - unzip
         - tmux
+    - name: Configure Tmux
+      remote_user: dev_user
+      copy: src=files/.tmux.conf
+            dest=/home/{{dev_user}}/.tmux.conf
