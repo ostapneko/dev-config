@@ -1,0 +1,14 @@
+---
+- hosts: development
+  sudo: yes
+  tasks:
+  - name: Install java
+    apt: pkg=openjdk-7-jdk update_cache=yes
+
+  - name: Check SBT version
+    shell: 'sbt --version | grep -q 0.13'
+    ignore_errors: yes
+    register: sbt_installed
+
+  - include: "tasks/install-sbt.yml"
+    when: sbt_installed|failed

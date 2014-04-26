@@ -4,7 +4,7 @@
   apt: pkg=curl update_cache=yes
 
 - name: Download SBT
-  get_url: url=http://repo.scala-sbt.org/scalasbt/sbt-native-packages/org/scala-sbt/sbt/0.13.0/sbt.deb
+  get_url: url=http://dl.bintray.com/sbt/debian/sbt-0.13.2.deb
            dest=/tmp/sbt.deb
 
 - name: Install SBT
