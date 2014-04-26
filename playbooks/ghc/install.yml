@@ -4,7 +4,7 @@
   sudo_user: ${dev_user}
   tasks:
   - name: check_ghc
-    shell: "ghc --version | grep -q 7.6.3"
+    shell: "ghc --version | grep -q 7.8.2"
     ignore_errors: yes
     register: ghc_installed
 
@@ -12,7 +12,7 @@
     when: ghc_installed|failed
 
   - name: cabal check
-    shell: "cabal --numeric-version | grep -q 1.18"
+    shell: "cabal --numeric-version | grep -q 1.20"
     ignore_errors: yes
     register: cabal_installed
 
@@ -21,4 +21,4 @@
 
   - name: put cabal in path
     template: src=files/.bash.d/cabal.sh.j2
-              dest=/home/${dev_user}/.bash.d/cabal.sh
+              dest=/home/{{dev_user}}/.bash.d/cabal.sh

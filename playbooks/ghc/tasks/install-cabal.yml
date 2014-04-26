@@ -1,20 +1,20 @@
-- name: Download Cabal-install 1.18
-  get_url: url=http://hackage.haskell.org/package/cabal-install-1.18.0.2/cabal-install-1.18.0.2.tar.gz
+- name: Download Cabal-install 1.20
+  get_url: url=http://hackage.haskell.org/package/cabal-install-1.20.0.0/cabal-install-1.20.0.0.tar.gz
            dest=/tmp/cabal-install.tar.gz
 
 - name: Unzip Cabal
   shell: tar xzf /tmp/cabal-install.tar.gz
          chdir=/tmp
-         creates=/tmp/cabal-install-1.18.0.2
+         creates=/tmp/cabal-install-1.20.0.0
 
 - name: Install cabal
   shell: ./bootstrap.sh
-         chdir=/tmp/cabal-install-1.18.0.2
+         chdir=/tmp/cabal-install-1.20.0.0
 
 - name: Link cabal
   sudo: yes
   sudo_user: root
-  file: src=/home/${dev_user}/.cabal/bin/cabal
+  file: src=/home/{{dev_user}}/.cabal/bin/cabal
         dest=/usr/local/bin/cabal
         state=link
 
