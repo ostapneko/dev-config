@@ -20,7 +20,7 @@
         state=directory
 
 - name: Blindly execute pathogen install script
-  shell: test -d ~/.vim/autoload/pathogen.vim || mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+  shell: mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 - name: Install plugins
   git:  repo={{ item.address }}
