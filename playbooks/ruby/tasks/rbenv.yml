@@ -1,0 +1,32 @@
+- name: Add Rbenv env variables
+  copy: src=files/rbenv_env
+        dest=/home/{{ dev_user }}/.bash.d/rbenv_env
+
+- name: checkout rbenv repo
+  git: repo=git://github.com/sstephenson/rbenv.git
+       dest={{ rbenv_home }}
+
+- name: checkout ruby-build
+  git: repo=git://github.com/sstephenson/ruby-build.git
+       dest={{ rbenv_home }}/plugins/ruby-build
+
+- name: check ruby presence
+  shell: "{{ shims }}/ruby -v | grep 2.1.2"
+  register: ruby_present
+  ignore_errors: yes
+
+- name: install ruby
+  shell: "{{ rbenv_exec }} install 2.1.2"
+  when: ruby_present|failed
+
+- name: rbenv rehash
+  shell: "{{ rbenv_exec }} rehash"
+
+- name: check bundler presence
+  shell: "{{ shims }}/bundle -v"
+  register: bundler_present
+  ignore_errors: true
+
+- name: install bundler
+  shell: "{{ shims }}/gem install bundler && {{ rbenv_exec }} rehash"
+  when: bundler_present|failed

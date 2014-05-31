@@ -1,0 +1,11 @@
+---
+- hosts: development
+  sudo: yes
+  sudo_user: "{{ dev_user }}"
+  tasks:
+  - include: "tasks/dependencies.yml"
+  - include: "tasks/rbenv.yml"
+    vars:
+      rbenv_home: "/home/{{ dev_user }}/.rbenv"
+      rbenv_exec: "{{ rbenv_home }}/bin/rbenv"
+      shims:      "RBENV_VERSION=2.1.2 {{ rbenv_home }}/shims"
