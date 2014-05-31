@@ -43,7 +43,7 @@ fi
 
 export TERM=screen-256color
 
-ls ~/.bash.d/* &> /dev/null && source ~/.bash.d/*
+for f in `ls ~/.bash.d/* 2> /dev/null`; do source $f ;done
 
 stty werase undef
 bind '"\C-w":unix-filename-rubout'
