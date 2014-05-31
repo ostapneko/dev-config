@@ -9,13 +9,12 @@ inoremap jk <ESC>
 nnoremap <F5> :source ~/.vimrc <CR>
 nnoremap  <TAB> :
 set et sts=2 sw=2
-map <leader>t :CommandT<cr>
-set guifont=Ubuntu\ Mono\ 14
+map <leader>e :Explore<cr>
 colo FreshCut
 set isk+=-
 set listchars=trail:~,tab:>-
 set list
-noremap <F6> :CtrlPClearAllCaches<cr>
+noremap <F6> :set modifiable nu<cr>:w!<cr>
 
 nnoremap <leader>1 gt1
 nnoremap <leader>2 gt2
